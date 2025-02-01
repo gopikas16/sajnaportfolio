@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: static-site  # You can change this name
+    name: sajnah
     env: static
     buildCommand: null  # No build needed for static HTML
     staticPublishPath: .  # Root directory containing index.html
