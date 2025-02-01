@@ -1512,6 +1512,27 @@ document.querySelectorAll('.collab-card').forEach(card => translateCard(card, 'c
     handleLanguageChange(lang);
 };
 });
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Simple function to ensure videos play
+    function initializeVideos() {
+        const videos = document.querySelectorAll('video');
+        videos.forEach(video => {
+            video.play().catch(function(error) {
+                console.log("Video play prevented:", error);
+            });
+        });
+    }
+
+    // Initialize videos on page load
+    initializeVideos();
+
+    // Additional initialization on user interaction (helps with autoplay policies)
+    document.addEventListener('click', initializeVideos, { once: true });
+    document.addEventListener('touchstart', initializeVideos, { once: true });
+});
+
     </script>
 </body>
 </html>
