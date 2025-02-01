@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sajna - Social Media Manager & Content Creator</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="combined.css">
+</head>
+<body>
+    <div class="video-background">
+        <video autoplay muted loop playsinline id="background-video">
+            <source src="video.mp4" type="video/mp4" media="(min-width: 769px)">
+            <source src="video3.mp4" type="video/mp4" media="(max-width: 768px)">
+        </video>
+    </div>
+
+    <nav>
+        <div class="language-selector">
+            <button class="language-btn">
+                English <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="language-options">
+                <button onclick="changeLanguage('en')">English</button>
+                <button onclick="changeLanguage('ar')">العربية</button>
+            </div>
+        </div>
+        <div class="nav-icons">
+            <a href="#home">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="#work">
+                <i class="fas fa-briefcase"></i>
+                <span>My Work</span>
+            </a>
+            <a href="#connect">
+                <i class="fas fa-handshake"></i>
+                <span>Let's Connect</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home" class="main-content">
+        <div class="profile-container">
+            <img src="sajna1.jpeg" alt="Sajna" class="profile-image">
+            <h1>Hello, I'm Sajna</h1>
+            <p>Social Media Manager, Content Creator and Video Presenter!</p>
+        </div>
+    </section>
+
+    <!-- Work Section -->
+    <section id="work" class="social-story">
+        <div class="overlay"></div>
+        <h1 class="main-title">MY <span>SOCIAL STORY</span></h1>
+
+        <div class="company-sections">
+            <!-- Vybinex Section -->
+            <div class="company-block current">
+                <!-- Existing Vybinex content -->
+                [Previous Vybinex section content]
+            </div>
+
+            <!-- Morfin FX Section -->
+            <div class="company-block morfin-section">
+                <!-- Existing Morfin content -->
+                [Previous Morfin section content]
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Language selector functionality
+        const languageBtn = document.querySelector('.language-btn');
+        const languageOptions = document.querySelector('.language-options');
+
+        languageBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            languageOptions.classList.toggle('active');
+        });
+
+        // Close language selector when clicking outside
+        document.addEventListener('click', () => {
+            languageOptions.classList.remove('active');
+        });
+
+        // Language change function
+        function changeLanguage(lang) {
+            const translations = {
+                en: {
+                    home: "Home",
+                    work: "My Work",
+                    connect: "Let's Connect",
+                    greeting: "Hello, I'm Sajna",
+                    description: "Social Media Manager, Content Creator and Video Presenter!",
+                    socialStory: "MY SOCIAL STORY",
+                    vybinexTitle: "Vybinex Digital Solution",
+                    vybinexDesc: "Currently driving digital success as Social Media Manager, helping businesses achieve their revenue goals through strategic online and offline marketing initiatives.",
+                    morfinTitle: "Morfin FX Global",
+                    morfinDesc: "Led comprehensive social media management and content creation for forex trading education."
+                },
+                ar: {
+                    home: "الرئيسية",
+                    work: "أعمالي",
+                    connect: "لنتواصل",
+                    greeting: "مرحباً، أنا سجنا",
+                    description: "مديرة وسائل التواصل الاجتماعي ومنشئة محتوى ومقدمة فيديو!",
+                    socialStory: "قصتي الاجتماعية",
+                    vybinexTitle: "فايبينكس للحلول الرقمية",
+                    vybinexDesc: "أقود حالياً النجاح الرقمي كمديرة وسائل التواصل الاجتماعي، مساعدة الشركات في تحقيق أهداف إيراداتها من خلال مبادرات التسويق الاستراتيجي.",
+                    morfinTitle: "مورفين إف إكس جلوبال",
+                    morfinDesc: "قدت إدارة شاملة لوسائل التواصل الاجتماعي وإنشاء المحتوى لتعليم تداول العملات الأجنبية."
+                }
+            };
+
+            // Update all translatable elements
+            document.querySelector('h1').textContent = translations[lang].greeting;
+            document.querySelector('.main-content p').textContent = translations[lang].description;
+            document.querySelector('.main-title').innerHTML = translations[lang].socialStory + ' <span>STORY</span>';
+            
+            // Update navigation
+            document.querySelectorAll('.nav-icons span')[0].textContent = translations[lang].home;
+            document.querySelectorAll('.nav-icons span')[1].textContent = translations[lang].work;
+            document.querySelectorAll('.nav-icons span')[2].textContent = translations[lang].connect;
+            
+            // Update button text
+            languageBtn.childNodes[0].textContent = lang === 'en' ? 'English ' : 'العربية ';
+            
+            // Update work section content
+            document.querySelector('.company-details h2').textContent = translations[lang].vybinexTitle;
+            document.querySelector('.company-details p').textContent = translations[lang].vybinexDesc;
+            
+            // If Arabic, add RTL styling where needed
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            
+            languageOptions.classList.remove('active');
+        }
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const section = document.querySelector(this.getAttribute('href'));
+                section.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // Nav transparency on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.style.backdropFilter = 'blur(8px)';
+            } else {
+                nav.style.backdropFilter = 'blur(5px)';
+            }
+        });
+    </script>
+</body>
+</html>

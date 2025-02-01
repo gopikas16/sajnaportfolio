@@ -1,0 +1,136 @@
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    color: #fff;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Video Background */
+.video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.video-background::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.video-background video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: cover;
+    z-index: 0;
+}
+
+/* Navigation */
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2%;
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+/* Language Selector */
+[Previous language selector styles from home.css]
+
+/* Navigation Icons */
+[Previous nav-icons styles from home.css]
+
+/* Home Section */
+#home {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    padding: 4rem 5%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6));
+}
+
+/* Profile Container */
+[Previous profile-container styles from home.css]
+
+/* Work Section */
+#work {
+    min-height: 100vh;
+    position: relative;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3));
+    padding: 6rem 2rem 2rem;
+}
+
+/* Social Story Styles */
+[Previous social-story styles from mywork.css]
+
+/* Company Blocks */
+[Previous company-block styles from mywork.css]
+
+/* Carousel Styles */
+[Previous carousel styles from mywork.css]
+
+/* RTL Support */
+[dir="rtl"] nav {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .nav-icons {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .company-intro {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .language-btn i {
+    margin-left: 0;
+    margin-right: 0.5rem;
+}
+
+/* Smooth Section Transitions */
+section {
+    transition: background-color 0.5s ease;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+    [Previous mobile styles from both CSS files]
+}
+
+/* Small Mobile Styles */
+@media (max-width: 480px) {
+    [Previous small mobile styles from both CSS files]
+}

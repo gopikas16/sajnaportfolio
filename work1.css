@@ -1,0 +1,596 @@
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.6;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+/* Background Styles */
+body {
+    background: radial-gradient(circle at center, #0d1526 0%, #040810 100%);
+    position: relative;
+    min-height: 100vh;
+}
+
+/* Remove video background related elements */
+.video-background, #myVideo, .overlay {
+    display: none;
+}
+/* Main Container */
+.social-story {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    color: #ffffff;
+}
+
+/* Main Title */
+.main-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 2.5rem;
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.main-title span {
+    display: inline-block;
+    background: linear-gradient(135deg, #00ffff, #0066ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: none;
+}
+
+/* Company Sections */
+.company-block {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 15px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.company-intro {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+/* Company Logo */
+.company-logo {
+    flex: 0 0 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid rgba(0, 255, 255, 0.3);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+    position: relative;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.company-logo:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.4);
+}
+
+.company-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.company-logo:hover img {
+    transform: scale(1.1);
+}
+
+.logo-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.company-logo:hover .logo-overlay {
+    opacity: 1;
+}
+
+.visit-text {
+    color: #ffffff;
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-align: center;
+    padding: 0.5rem;
+    background: rgba(0, 255, 255, 0.2);
+    border-radius: 15px;
+    backdrop-filter: blur(4px);
+}
+
+/* Company Details */
+.company-details h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #ffffff, #00ffff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Carousel Styling */
+.clients-carousel {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.carousel-container {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    scroll-behavior: smooth;
+}
+
+.carousel-container::-webkit-scrollbar {
+    display: none;
+}
+
+.train {
+    display: flex;
+    gap: 1rem;
+    animation: trainMove 30s linear infinite;
+}
+
+@keyframes trainMove {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* Client Cards */
+.client-card {
+    flex: 0 0 200px;
+    text-decoration: none;
+    color: inherit;
+}
+
+.card-inner {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 1.5rem;
+    height: 100%;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.card-inner:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 10px 20px rgba(0, 255, 255, 0.1);
+}
+
+.logo-container {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid rgba(0, 255, 255, 0.2);
+}
+
+.logo-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.card-content {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.card-content h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: #ffffff;
+}
+
+.card-content p {
+    font-size: 0.9rem;
+    color: #e0e0e0;
+    line-height: 1.4;
+}
+
+/* Navigation Buttons */
+.nav-btn {
+    background: rgba(0, 255, 255, 0.1);
+    border: none;
+    color: #ffffff;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    z-index: 2;
+}
+
+.nav-btn:hover {
+    background: rgba(0, 255, 255, 0.2);
+    transform: scale(1.1);
+}
+
+/* Creator Section */
+.creator-section {
+    margin-top: 4rem;
+    padding: 2.5rem;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.section-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 2.5rem;
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.section-title span {
+    display: inline-block;
+    background: linear-gradient(135deg, #00ffff, #0066ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: none;
+}
+
+.video-showcase {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.mobile-video {
+    flex: 0 1 300px;
+    text-align: center;
+}
+
+.phone-frame {
+    position: relative;
+    width: 100%;
+    padding-bottom: 177.78%;
+    background: #000;
+    border-radius: 2rem;
+    overflow: hidden;
+    border: 8px solid #333;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.phone-frame video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.mobile-video p {
+    margin-top: 1rem;
+    font-size: 1.1rem;
+    color: #fff;
+}
+
+/* Creator Bio */
+.creator-bio {
+    max-width: 800px;
+    margin: 0 auto 4rem;
+    text-align: center;
+}
+
+.creator-bio p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Collaborations Section */
+.collaborations {
+    margin-top: 4rem;
+}
+
+.collaborations h3 {
+    font-size: 2.2rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: #ffffff;
+}
+
+.collab-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.collab-card {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 2rem;
+    transition: all 0.3s ease;
+}
+
+.collab-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.collab-logo {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 1.5rem;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid rgba(0, 255, 255, 0.3);
+}
+
+.collab-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.collab-details {
+    text-align: center;
+}
+
+.collab-details h4 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: #ffffff;
+}
+
+.campaign {
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 0.8rem;
+}
+
+.details {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 1.5rem;
+}
+
+.view-reel {
+    display: inline-block;
+    padding: 0.8rem 1.8rem;
+    background: rgba(0, 255, 255, 0.1);
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.view-reel:hover {
+    background: rgba(0, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+/* Contact Section */
+.contact-section {
+    margin-top: 4rem;
+    padding: 2.5rem;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.contact-info {
+    text-align: right;
+    padding-right: 2rem;
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.social-info {
+    text-align: left;
+    padding-left: 2rem;
+}
+
+.contact-item {
+    margin-bottom: 1.5rem;
+}
+
+.contact-item a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.contact-item a:hover {
+    color: #00ffff;
+}
+
+/* Instagram Link */
+.instagram-link {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.instagram-link:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .main-title {
+        font-size: 2.5rem;
+    }
+
+    .company-intro {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .video-showcase {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .mobile-video {
+        flex: 0 1 auto;
+        width: 80%;
+    }
+
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .contact-info, .social-info {
+        text-align: center;
+        padding: 0;
+        border: none;
+    }
+
+    .client-card {
+        flex: 0 0 120px;
+    }
+
+    .card-inner {
+        padding: 0.8rem;
+    }
+
+    .desktop-only {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-title {
+        font-size: 2rem;
+    }
+
+    .social-story {
+        padding: 1rem;
+    }
+
+    .mobile-video {
+        width: 100%;
+    }
+
+    .collab-card {
+        padding: 1.5rem;
+    }
+
+    .instagram-link {
+        padding: 0.8rem 2rem;
+    }
+
+    .company-logo {
+        width: 100px;
+        height: 100px;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+    }
+
+    .collab-logo {
+        width: 80px;
+        height: 80px;
+    }
+
+    .collab-details h4 {
+        font-size: 1.4rem;
+    }
+
+    .view-reel {
+        padding: 0.6rem 1.4rem;
+        font-size: 0.85rem;
+    }
+
+    .nav-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 1rem;
+    }
+
+    .company-details h2 {
+        font-size: 1.8rem;
+    }
+
+    .creator-section {
+        padding: 1.5rem;
+    }
+
+    .creator-bio p {
+        font-size: 1rem;
+    }
+}
+
+/* Animation States */
+.train.paused {
+    animation-play-state: paused;
+}
+
+.carousel-container.active {
+    cursor: grabbing;
+}
