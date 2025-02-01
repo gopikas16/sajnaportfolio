@@ -1,0 +1,40 @@
+SajnahPortfolio            
+├─ assets                  
+│  ├─ R&B.jpg              
+│  ├─ about.jpg            
+│  ├─ aboutwallpaper.jpeg  
+│  ├─ accucus.png          
+│  ├─ cakes and bakes.jpg  
+│  ├─ cosmos.png           
+│  ├─ dark.avif            
+│  ├─ english.jpeg         
+│  ├─ francis alukkas.png  
+│  ├─ insta1.mp4           
+│  ├─ insta2.mp4           
+│  ├─ kenz food.jpg        
+│  ├─ kopiko.png           
+│  ├─ levelx.jpg           
+│  ├─ methyz.png           
+│  ├─ mobile.mp4           
+│  ├─ mobile1.mp4          
+│  ├─ moneyconclave.jpeg   
+│  ├─ morfin.jpg           
+│  ├─ navyblue.jpg         
+│  ├─ nykaa.jpg            
+│  ├─ protap.jpeg          
+│  ├─ sajna1.jpeg          
+│  ├─ sajnastanding.jpeg   
+│  ├─ speakeasy.png        
+│  ├─ tony & guy.png       
+│  ├─ tony.png             
+│  ├─ video.mp4            
+│  ├─ video2.mp4           
+│  ├─ video3.mp4           
+│  ├─ vybinex.png          
+│  ├─ wallpaper.jpg        
+│  ├─ wise ajman.jpg       
+│  ├─ wise uaq.jpg         
+│  └─ work.jpeg            
+├─ index.css               
+├─ index.html              
+└─ render.yaml             
