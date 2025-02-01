@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: static-site  # You can change this name
+    env: static
+    buildCommand: null  # No build needed for static HTML
+    staticPublishPath: .  # Root directory containing index.html
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    headers:
+      - path: /*
+        name: Cache-Control
+        value: no-cache
+    # Optional: Add custom domains if needed
+    # domains:
+    #   - your-domain.com
