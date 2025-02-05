@@ -671,6 +671,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Optimized scroll handler with improved section detection
     const handleScroll = debounce((e) => {
+        // Don't handle auto-scrolling on mobile devices
+        if (window.innerWidth <= 768) {
+            return;
+        }
+
         if (isScrolling) return;
 
         const st = window.pageYOffset || document.documentElement.scrollTop;
@@ -693,24 +698,25 @@ document.addEventListener('DOMContentLoaded', () => {
         );
 
         if (mostVisible.section) {
-            isScrolling = true;
-            const scrollingDown = st > lastScrollTop;
-            
-            // Enhanced scrolling logic with better threshold detection
-            if (scrollingDown && mostVisible.section.id === 'home' && 
-                mostVisible.visibility < windowHeight * 0.7) {
-                smoothScrollTo(workSection, scrollDuration);
-            } else if (!scrollingDown && mostVisible.section.id === 'work' && 
-                      mostVisible.visibility < windowHeight * 0.7) {
-                smoothScrollTo(homeSection, scrollDuration);
-            } else {
-                isScrolling = false;
+            // Only apply snap scrolling on desktop
+            if (window.innerWidth > 768) {
+                isScrolling = true;
+                const scrollingDown = st > lastScrollTop;
+                
+                if (scrollingDown && mostVisible.section.id === 'home' && 
+                    mostVisible.visibility < windowHeight * 0.7) {
+                    smoothScrollTo(workSection, scrollDuration);
+                } else if (!scrollingDown && mostVisible.section.id === 'work' && 
+                          mostVisible.visibility < windowHeight * 0.7) {
+                    smoothScrollTo(homeSection, scrollDuration);
+                } else {
+                    isScrolling = false;
+                }
             }
         }
 
         lastScrollTop = st <= 0 ? 0 : st;
     }, 50);
-
     // Optimized wheel event handler
     const wheelHandler = debounce((e) => {
         if (isScrolling) {
