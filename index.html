@@ -20,7 +20,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Montserrat:wght@400;500;600&family=Poppins:wght@400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="index2.css">
 </head>
 <body>
     <div class="main-container">
@@ -71,7 +71,7 @@
                 <div class="profile-container">
                     <img src="https://res.cloudinary.com/dlv3q4qeb/image/upload/v1738420569/sajna1_iadrdn.jpg" alt="Sajna" class="profile-image">
                     <h1 class="modern-title">Hello, I'm Sajna</h1>
-                    <p class="subtitle">Digital Storyteller | Social Media Strategist</p>
+                    <p class="subtitle">Influencer | Social Media Strategist</p>
                     <div class="bio-tags">
                         <span>✨ Content Creator</span>
                         <span>🎥 Video Presenter</span>
@@ -1280,23 +1280,35 @@ function resetChatState() {
 
     // Morfin FX section
     const morfinSections = document.querySelectorAll('.current-company-section');
-    morfinSections.forEach(section => {
-        const title = section.querySelector('.company-details h2');
-        const desc = section.querySelector('.company-details p');
-        const achievements = section.querySelectorAll('.achievement');
-        
-        if (title && title.textContent.includes('Morfin')) {
-            title.textContent = translations[lang].morfinTitle;
-            if (desc) {
-                desc.textContent = translations[lang].morfinDesc;
-            }
-            if (achievements.length === 3) {
-                achievements[0].textContent = translations[lang].videoProduction;
-                achievements[1].textContent = translations[lang].tutorialSeries;
-                achievements[2].textContent = translations[lang].socialManagement;
-            }
+morfinSections.forEach(section => {
+    const title = section.querySelector('.company-details h2');
+    const desc = section.querySelector('.company-details p');
+    
+    // Check if this is the Morfin section using a more reliable method
+    if (title && (
+        title.textContent.includes('Morfin') || 
+        title.textContent.includes('مورفين')
+    )) {
+        // Update title and description based on language
+        title.textContent = translations[lang].morfinTitle;
+        if (desc) {
+            desc.textContent = translations[lang].morfinDesc;
         }
-    });
+
+        // Update achievements
+        const achievements = section.querySelectorAll('.key-achievements .achievement');
+        if (achievements.length > 0) {
+            const achievementTexts = {
+                en: ['Video Production', 'Tutorial Series', 'Social Management'],
+                ar: ['إنتاج الفيديو', 'سلسلة تعليمية', 'إدارة وسائل التواصل']
+            };
+
+            achievements.forEach((achievement, index) => {
+                achievement.textContent = achievementTexts[lang][index];
+            });
+        }
+    }
+});
     
     
     // Vybinex section
