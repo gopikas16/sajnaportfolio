@@ -671,8 +671,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Optimized scroll handler with improved section detection
     const handleScroll = debounce((e) => {
-        // Don't handle auto-scrolling on mobile devices
+        // Completely disable scroll handling on mobile
         if (window.innerWidth <= 768) {
+            isScrolling = false;
+            return;
+        }
+        
+        // Early return if user is in an active scroll
+        if (isScrolling || document.querySelector('.about-section').style.display === 'block') {
             return;
         }
 
@@ -717,6 +723,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         lastScrollTop = st <= 0 ? 0 : st;
     }, 50);
+    
     // Optimized wheel event handler
     const wheelHandler = debounce((e) => {
         if (isScrolling) {
