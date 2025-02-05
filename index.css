@@ -132,6 +132,38 @@ section {
     -webkit-overflow-scrolling: touch;
 }
 
+@media (max-width: 768px) {
+    .main-container {
+        scroll-snap-type: none;  /* Disable scroll snap on mobile */
+        overflow-y: auto;
+        height: auto;  /* Allow natural height */
+        position: relative;  /* Change from fixed to relative */
+    }
+
+    section {
+        scroll-snap-align: none;  /* Disable scroll snap alignment */
+        min-height: auto;  /* Allow natural height */
+        height: auto;
+    }
+
+    .work-section {
+        padding-bottom: 0;  /* Remove extra padding if any */
+    }
+
+    .contact-section {
+        margin-bottom: 2rem;  /* Add some bottom margin */
+    }
+}
+
+/* Ensure the body and html can scroll naturally on mobile */
+@media (max-width: 768px) {
+    html, body {
+        overflow: auto;
+        position: relative;
+        height: auto;
+    }
+}
+
 /* Base Styles starts here... *//* Base Styles */
 * {
     margin: 0;
