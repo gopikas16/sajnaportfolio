@@ -671,11 +671,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Optimized scroll handler with improved section detection
     const handleScroll = debounce((e) => {
+    // Early return for mobile devices
+    if (window.innerWidth <= 768) {
+        return;
+    }
+        
+        // Early return if user is in an active scroll
+        if (isScrolling || document.querySelector('.about-section').style.display === 'block') {
+            return;
+        }
+
         if (isScrolling) return;
 
         const st = window.pageYOffset || document.documentElement.scrollTop;
         const windowHeight = window.innerHeight;
         const scrollPosition = window.scrollY;
+        const documentHeight = document.documentElement.scrollHeight;
         
         // Calculate section visibility with performance optimization
         const visibleSections = Array.from(sections).map(section => {
@@ -692,30 +703,35 @@ document.addEventListener('DOMContentLoaded', () => {
         );
 
         if (mostVisible.section) {
-            isScrolling = true;
-            const scrollingDown = st > lastScrollTop;
-            
-            // Enhanced scrolling logic with better threshold detection
-            if (scrollingDown && mostVisible.section.id === 'home' && 
-                mostVisible.visibility < windowHeight * 0.7) {
-                smoothScrollTo(workSection, scrollDuration);
-            } else if (!scrollingDown && mostVisible.section.id === 'work' && 
-                      mostVisible.visibility < windowHeight * 0.7) {
-                smoothScrollTo(homeSection, scrollDuration);
-            } else {
-                isScrolling = false;
+            // Only apply snap scrolling on desktop
+            if (window.innerWidth > 768) {
+                isScrolling = true;
+                const scrollingDown = st > lastScrollTop;
+                
+                if (scrollingDown && mostVisible.section.id === 'home' && 
+                    mostVisible.visibility < windowHeight * 0.7) {
+                    smoothScrollTo(workSection, scrollDuration);
+                } else if (!scrollingDown && mostVisible.section.id === 'work' && 
+                          mostVisible.visibility < windowHeight * 0.7) {
+                    smoothScrollTo(homeSection, scrollDuration);
+                } else {
+                    isScrolling = false;
+                }
             }
         }
 
         lastScrollTop = st <= 0 ? 0 : st;
     }, 50);
-
+    
     // Optimized wheel event handler
     const wheelHandler = debounce((e) => {
-        if (isScrolling) {
-            e.preventDefault();
-        }
-    }, 16, true);
+    if (window.innerWidth <= 768) {
+        return;
+    }
+    if (isScrolling) {
+        e.preventDefault();
+    }
+}, 16, true);
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     window.addEventListener('wheel', wheelHandler, { passive: false });
@@ -996,7 +1012,7 @@ function resetChatState() {
         
                     // Home Section
                     greeting: "Hello, I'm Sajna",
-                    description: "Social Media Manager, Content Creator and Video Presenter!",
+                    description: "Influencer | Social Media Strategist",
                     contentCreator: "✨ Content Creator",
                     videoPresenter: "🎥 Video Presenter",
                     socialMediaExpert: "📱 Social Media Expert",
@@ -1110,7 +1126,7 @@ function resetChatState() {
         
                     // Home Section
                     greeting: "مرحبًا، أنا ساجنا",
-                    description: "مديرة وسائل التواصل الاجتماعي، منشئة محتوى ومقدمة فيديو!",
+                    description: "مؤثر، استراتيجي وسائل التواصل الاجتماعي!",
                     contentCreator: "✨ منشئة محتوى",
                      videoPresenter: "🎥 مقدمة فيديو",
                      socialMediaExpert: "📱 خبيرة وسائل التواصل الاجتماعي",
@@ -1280,23 +1296,35 @@ function resetChatState() {
 
     // Morfin FX section
     const morfinSections = document.querySelectorAll('.current-company-section');
-    morfinSections.forEach(section => {
-        const title = section.querySelector('.company-details h2');
-        const desc = section.querySelector('.company-details p');
-        const achievements = section.querySelectorAll('.achievement');
-        
-        if (title && title.textContent.includes('Morfin')) {
-            title.textContent = translations[lang].morfinTitle;
-            if (desc) {
-                desc.textContent = translations[lang].morfinDesc;
-            }
-            if (achievements.length === 3) {
-                achievements[0].textContent = translations[lang].videoProduction;
-                achievements[1].textContent = translations[lang].tutorialSeries;
-                achievements[2].textContent = translations[lang].socialManagement;
-            }
+morfinSections.forEach(section => {
+    const title = section.querySelector('.company-details h2');
+    const desc = section.querySelector('.company-details p');
+    
+    // Check if this is the Morfin section using a more reliable method
+    if (title && (
+        title.textContent.includes('Morfin') || 
+        title.textContent.includes('مورفين')
+    )) {
+        // Update title and description based on language
+        title.textContent = translations[lang].morfinTitle;
+        if (desc) {
+            desc.textContent = translations[lang].morfinDesc;
         }
-    });
+
+        // Update achievements
+        const achievements = section.querySelectorAll('.key-achievements .achievement');
+        if (achievements.length > 0) {
+            const achievementTexts = {
+                en: ['Video Production', 'Tutorial Series', 'Social Management'],
+                ar: ['إنتاج الفيديو', 'سلسلة تعليمية', 'إدارة وسائل التواصل']
+            };
+
+            achievements.forEach((achievement, index) => {
+                achievement.textContent = achievementTexts[lang][index];
+            });
+        }
+    }
+});
     
     
     // Vybinex section

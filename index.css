@@ -134,24 +134,39 @@ section {
 
 @media (max-width: 768px) {
     .main-container {
-        scroll-snap-type: none;  /* Disable scroll snap on mobile */
+        scroll-snap-type: none;
         overflow-y: auto;
-        height: auto;  /* Allow natural height */
-        position: relative;  /* Change from fixed to relative */
+        height: auto;
+        position: relative;
+        scroll-behavior: auto;
     }
 
     section {
-        scroll-snap-align: none;  /* Disable scroll snap alignment */
-        min-height: auto;  /* Allow natural height */
+        scroll-snap-align: none;
+        min-height: auto;
         height: auto;
+        position: relative;
+        scroll-behavior: auto;
     }
 
     .work-section {
-        padding-bottom: 0;  /* Remove extra padding if any */
+        padding-bottom: 0;
+        scroll-margin-top: 0;
     }
 
     .contact-section {
-        margin-bottom: 2rem;  /* Add some bottom margin */
+        margin-bottom: 2rem;
+        scroll-margin-top: 0;
+    }
+
+    html, body {
+        scroll-snap-type: none;
+        scroll-behavior: auto;
+    }
+
+    /* Override any smooth scrolling for mobile */
+    html {
+        scroll-behavior: auto !important;
     }
 }
 
@@ -764,15 +779,16 @@ nav {
 
 /* Replace company-block with current-company-section */
 .current-company-section {
-    padding: 2rem;
+    padding: 2.5rem;  /* Match the padding of creator-section */
     margin: 2rem auto;
-    max-width: 1200px;
+    max-width: 100%;  /* Change from 1200px to 100% */
+    width: 100%;      /* Add width 100% */
     background: rgba(255, 255, 255, 0.03);
     border-radius: 15px;
     backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.1);
+    box-sizing: border-box;  /* Ensure padding is included in width calculation */
 }
-
 /* Main Title Styles */
 .main-title {
     font-family: 'Oswald', sans-serif;
@@ -1084,15 +1100,18 @@ nav {
 
 .collab-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
+    width: 100%;
 }
 
 .collab-card {
+    width: 100%;
     background: rgba(255, 255, 255, 0.05);
     border-radius: 15px;
     padding: 2rem;
     transition: all 0.3s ease;
+    box-sizing: border-box;
 }
 
 .collab-card:hover {
@@ -1480,4 +1499,37 @@ html {
 @keyframes bounce {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-10px); }
+}
+/* Optional: Add container for these sections to maintain consistent spacing */
+.work-section > .current-company-section,
+.work-section > .creator-section {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1400px;  /* You can adjust this value to control maximum width */
+    width: calc(100% - 4rem);  /* This creates some margin on the sides */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .work-section > .current-company-section,
+    .work-section > .creator-section {
+        width: calc(100% - 2rem);  /* Less margin on mobile */
+    }
+    
+    .current-company-section {
+        padding: 1.5rem;  /* Smaller padding on mobile */
+    }
+}
+/* Medium screens (tablets and smaller desktops) */
+@media (max-width: 1200px) {
+    .collab-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Mobile screens */
+@media (max-width: 768px) {
+    .collab-grid {
+        grid-template-columns: 1fr;
+    }
 }
